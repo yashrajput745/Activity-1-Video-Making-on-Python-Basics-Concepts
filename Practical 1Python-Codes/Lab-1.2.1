@@ -1,0 +1,38 @@
+
+n = int(input())
+
+
+marks = list(map(int, input().split()))
+
+
+fail = False
+
+for m in marks:
+	if _marks<40:   
+        fail = True
+        break
+
+
+	if fail:
+	    print("Fail")
+
+	else:
+   
+    total = sum(marks)
+    percentage =total /n  
+
+
+    print("Percentage:", format(percentage, ".2f"))
+
+	   
+    if percentage>75:   
+        print("Distinction")
+
+    elif percentage>=60 and percentage<75:   
+        print("First Division")
+
+    elif percentage>=50 and percentage<60:   
+        print("Second Division")
+
+    else:
+        print("Third Division")
