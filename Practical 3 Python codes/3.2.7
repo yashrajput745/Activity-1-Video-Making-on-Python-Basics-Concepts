@@ -1,1 +1,72 @@
+import numpy as np
+
+a = np.loadtxt("Sample.csv", delimiter=',', skiprows=1)
+
+print("All student Details:")
+print(" "+str(a))   # FIX 1: correct spacing (no underscore issue)
+
+# Total students
+print("Total Students:", a.shape[0])
+
+# Roll numbers
+roll = a[:,0]
+print("All Student Roll Nos", roll)
+
+# Subject 1
+s1 = a[:,1]
+print("Subject 1 Marks", s1)
+
+# Subject 2 & 3
+s2 = a[:,2]
+s3 = a[:,3]
+
+print("Min marks in Subject 2", np.min(s2))
+print("Max marks in Subject 3", np.max(s3))
+
+# Subjects
+subjects = a[:,1:]
+print("All subject marks:", subjects)
+
+# Total
+total = np.sum(subjects, axis=1)
+print("Total Marks", total)
+
+# Average per student (FIX 2: rounding)
+avg_student = np.round(np.mean(subjects, axis=1), 1)
+print(avg_student)
+
+# Average per subject
+avg_subject = np.round(np.mean(subjects, axis=0), 1)
+print("Average Marks of each subject", avg_subject)
+
+print("Average Marks of S1 and S2", avg_subject[:2])
+print("Average Marks of S1 and S3", avg_subject[[0,2]])
+
+# Max / Min roll
+print("Roll no who got maximum marks in Subject 3", roll[np.argmax(s3)])
+print("Roll no who got minimum marks in Subject 2", roll[np.argmin(s2)])
+
+# Exact 24
+print("Roll no who got 24 marks in Subject 2", roll[s2 == 24].reshape(-1,1))
+
+# Counts
+print("Count of students who got marks in Subject 1 < 40", np.sum(s1 < 40))
+print("Count of students who got marks in Subject 2 > 90:", np.sum(s2 > 90))
+
+print("Count of students in each subject who got marks >= 90:", np.sum(subjects >= 90, axis=0))
+
+print("Roll no:", roll)
+print("Count of subjects in which student got marks >= 90:", np.sum(subjects >= 90, axis=1))
+
+# Sorting
+print(np.sort(s1))
+
+# Filter
+print(a[(s1 >= 50) & (s1 <= 90)])
+
+# FULL ARRAY AGAIN (VERY IMPORTANT)
+print(a)
+
+# Index
+print(np.where(s1 == 79))
 
